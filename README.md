@@ -20,30 +20,67 @@ pip install -r requirements.txt
 # 1. YOLOv8 웹캠을 이용한 실시간 객체 감지 프로젝트
 
 이 프로젝트는 YOLOv8을 사용하여 웹캠에서 실시간으로 객체를 감지하는 프로그램입니다.
+# YOLOv8을 활용한 실시간 객체 감지
+
+이 코드는 YOLOv8 모델을 사용하여 웹캠의 실시간 영상에서 객체를 감지하고, 그 결과를 화면에 시각화하여 표시하는 Python 스크립트입니다.
+
+---
+
+## 코드 설명
+
+### 1. YOLO 모델 로드
+- `YOLO('yolov8n.pt')`를 사용하여 YOLOv8의 Nano 버전을 로드합니다. Nano 버전은 경량화된 모델로, 빠르고 효율적인 객체 감지를 제공합니다.
+- 사용자는 필요에 따라 다른 버전(예: `yolov8s.pt`, `yolov8m.pt`)으로 대체할 수 있습니다.
+
+### 2. 웹캠 초기화
+- `cv2.VideoCapture(0)`를 통해 기본 웹캠을 활성화합니다.
+- `0`은 기본 웹캠을 의미하며, 외부 카메라를 사용하는 경우 적절한 번호로 변경 가능합니다.
+
+### 3. 실시간 객체 감지 루프
+- 웹캠에서 프레임을 반복적으로 읽어들이며, `ret`과 `frame`을 통해 성공 여부와 영상을 가져옵니다.
+- YOLO 모델을 사용하여 각 프레임에서 객체를 감지하고, `results = model(frame)`으로 결과를 얻습니다.
+- `results[0].plot()`를 통해 감지 결과를 프레임에 시각화하여 객체의 위치와 이름을 표시합니다.
+
+### 4. 화면에 표시
+- `cv2.imshow()`를 사용하여 시각화된 프레임을 화면에 출력합니다.
+- 사용자는 실시간으로 감지된 객체를 확인할 수 있습니다.
+
+### 5. 종료 조건
+- 사용자가 'q' 키를 누르면 `cv2.waitKey(1)` 조건에 의해 루프가 종료됩니다.
+
+### 6. 리소스 해제
+- `cap.release()`로 웹캠 리소스를 해제하고, `cv2.destroyAllWindows()`를 호출하여 모든 OpenCV 창을 닫습니다.
+
+---
+
+## 실행 방법
+1. YOLOv8 모델 파일(`yolov8n.pt`)이 로컬 환경에 있어야 합니다. [Ultralytics YOLO](https://github.com/ultralytics/ultralytics)를 참고하여 모델 파일을 다운로드하십시오.
+2. Python 환경에서 필요한 라이브러리(OpenCV, Ultralytics)를 설치합니다:
+   ```bash
+   pip install opencv-python ultralytics
 
 
-웹캠을 연결한 후 프로그램을 실행해주세요
-
-## 1.1 실행 방법
+##  실행 방법
 
 1. 프로그램 실행하기
-   ```bash
-   python yolo.py
-   ```
+    ```bash
+   python yolo.py 
+    ```
 
 ultralytics 패키지에 대해 자세히 알고싶다면
 아래 사이트에서 참고하세요
 https://docs.ultralytics.com/ko/
 
 
-
+---
 # 2. Kaggle 데이터분석
 
 
-
+---
 # 3. IoT_건강_예측_학습
 
-## 3.1 데이터 출처
+- 이 코드는 IoT 데이터를 기반으로 다양한 머신러닝 모델(Naive Bayes, Decision Tree, Logistic Regression, SVM, Random Forest, KNN, Gradient Boosting)을 학습 및 평가하여, 정확도가 가장 높은 모델을 선정하고, GridSearchCV를 통해 Random Forest 모델의 하이퍼파라미터를 최적화하여 최종 모델을 완성합니다. 최종 모델은 테스트 데이터에서 높은 정확도를 기록했으며, 예제 데이터를 입력받아 "Low", "Medium", "High"로 상태를 예측할 수 있는 시스템을 제공합니다.
+## 3.1 사용한 데이터 출처
 - 데이터는https://github.com/Ramyadeveloper59/Health-Monitoring-system-by-using-Machine-Learning 레포에서 가져온뒤 임의로 증강하여 사용하였습니다.
   
 ## 3.2 데이터 메타데이터
