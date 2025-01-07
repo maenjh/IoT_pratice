@@ -109,3 +109,64 @@ https://docs.ultralytics.com/ko/
 - 모든 열이 int64 형식으로 구성.
 ### 3.2.4. 결측치 (Missing Values):
 - 모든 열에 결측치 없음.
+
+# 4. MQTT를 활용한 IoT 센서 데이터 수집 예제
+
+## 시작전 세팅 사항
+-  Mosquitto MQTT 브로커 설치
+Windows에서 Mosquitto MQTT 브로커 설치 방법
+### 1. Mosquitto 다운로드
+Mosquitto 공식 다운로드 페이지 방문
+- Windows 인스톨러 다운로드
+- mosquitto-2.x.x-install-windows-x64.exe 파일 선택
+
+
+
+### 2. 필수 구성 요소 설치
+- Visual C++ redistributable 설치
+다운로드 페이지의 "Visual C++ 2015 redistributable" 링크를 통해 설치
+이미 설치되어 있다면 이 단계 건너뛰기
+
+
+
+### 3. Mosquitto 설치
+다운로드한 mosquitto-2.x.x-install-windows-x64.exe 실행
+설치 마법사의 안내에 따라 진행
+기본 설치 경로 사용 (C:\Program Files\mosquitto)
+
+### 4. 설정 파일 수정
+
+C:\Program Files\mosquitto\mosquitto.conf 파일을 메모장으로 열기
+파일 끝에 다음 내용 추가:
+```
+listener 1883
+allow_anonymous true
+``` 
+### 5. 서비스 실행
+방법 1: 서비스 관리자 사용
+- services.msc 실행 (Windows + R 키를 누르고 입력)
+- "Mosquitto Broker" 서비스 찾기
+- 서비스 선택 후 "시작" 클릭
+
+방법 2: 명령 프롬프트 사용
+
+관리자 권한으로 명령 프롬프트 실행
+서비스 시작:
+```cmd
+net start mosquitto
+```
+서비스 상태 확인:
+```cmd
+sc query mosquitto
+```
+
+### 6. 설치 확인
+
+서비스가 정상적으로 실행되면 localhost:1883에서 MQTT 브로커가 동작
+테스트를 위해 MQTT 클라이언트 도구 사용 가능
+
+### 주의사항
+
+방화벽 설정에서 1883 포트 허용 필요할 수 있음
+설치 중 오류 발생 시 관리자 권한으로 실행 필요
+서비스가 시작되지 않을 경우 Windows 이벤트 로그 확인
