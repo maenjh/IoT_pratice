@@ -104,11 +104,17 @@ https://docs.ultralytics.com/ko/
 - ECG Data: 심전도 데이터.
 - Pressure Data: 압력 데이터.
 - T- arget: 타겟 값 (환자의 상태, 0, 1, 2로 분류).
-- 
+
 ### 3.2.3. 데이터 타입 (Data Types):
 - 모든 열이 int64 형식으로 구성.
 ### 3.2.4. 결측치 (Missing Values):
 - 모든 열에 결측치 없음.
+
+
+
+---
+
+
 
 # 4. MQTT를 활용한 IoT 센서 데이터 수집 예제
 
@@ -164,6 +170,17 @@ sc query mosquitto
 
 서비스가 정상적으로 실행되면 localhost:1883에서 MQTT 브로커가 동작
 테스트를 위해 MQTT 클라이언트 도구 사용 가능
+
+### 7. 코드 실행 순서
+- 각각의 배쉬 혹은 cmd 창에서 시행합니다.
+#### 각각의 bash or cmd창에서 시행, 수신 코드 실행 후 송신 코드 실행
+```bash
+python3.10 수신.py
+```
+
+```bash
+python3.10 송신.py
+```
 
 ### 주의사항
 
